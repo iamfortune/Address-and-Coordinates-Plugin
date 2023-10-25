@@ -2,8 +2,6 @@
 <script setup lang="ts">
 import { computed, ref, watch, onMounted } from 'vue'
 import { useFieldPlugin } from '@storyblok/field-plugin/vue3'
-import Cleave from 'cleave.js'
-import 'cleave.js/dist/addons/cleave-phone.at'
 
 // The URL of the OpenStreetMap endpoint
 // for fetching location data by address.
@@ -15,6 +13,8 @@ const {
 } = useFieldPlugin()
 
 const latLngNotFound = ref(false)
+
+// DEFINE INTERFACE FOR ADDRESS 
 
 const address = ref({
   // These are the values which our custom
@@ -73,10 +73,6 @@ const phoneOptions = {
   phoneRegionCode: 'NG',
 }
 
-onMounted(() => {
-  new Cleave('#phone', phoneOptions)
-  new Cleave('#fax', phoneOptions)
-})
 
 watch(address.value, (value) => {
   setContent(value)
